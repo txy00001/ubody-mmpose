@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  castpose-dev:
+    # build:
+    #   context: .
+    image: registry.cn-hangzhou.aliyuncs.com/litesense/action-studio:runtime-deploy-v1.2.0
+    shm_size: 4gb
+    privileged: true
+
+    volumes:
+      - /mnt/P40_NFS:/mnt/P40_NFS
+      - ..:/workspace
+      # - /dev:/dev
+      # - /workspace/third_party/
+
+    command: sleep infinity
+    network_mode: host
+
+    environment:
+      NVIDIA_DRIVER_CAPABILITIES: all
+      PYTHONHASHSEED: 0
+
+    # ports:
+    #   - "8800:8800"
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]

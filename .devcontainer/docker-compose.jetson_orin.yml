@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  castpose-dev:
+    # build:
+    #   context: .
+    image: registry.cn-hangzhou.aliyuncs.com/litesense/action-studio-l4t:runtime-deploy-v1.2.0-ds6.2
+    shm_size: 4gb
+    privileged: true
+
+    volumes:
+      - ..:/workspace
+      - /dev:/dev
+      - /usr/src/jetson_multimedia_api:/usr/src/jetson_multimedia_api
+      - /tmp/argus_socket:/tmp/argus_socket
+      - /mnt/P40_NFS:/mnt/P40_NFS
+
+    # entrypoint: /bin/sh -c
+    command: sleep infinity
+    network_mode: host
+
+    environment:
+      NVIDIA_DRIVER_CAPABILITIES: all
+      PYTHONHASHSEED: 0
+
+    # ports:
+    #   - "8800:8800"
+
+    runtime: nvidia
+    # mem_limit: 3072m
+    # memswap_limit: 3072m

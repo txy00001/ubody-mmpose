@@ -1,0 +1,6 @@
+[submodule "third_party/mmpose"]
+	path = third_party/mmpose
+	url = https://github.com/open-mmlab/mmpose.git
+[submodule "third_party/mmdeploy"]
+	path = third_party/mmdeploy
+	url = https://github.com/open-mmlab/mmdeploy.git
